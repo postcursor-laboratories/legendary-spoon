@@ -103,10 +103,10 @@ gulp.copy = function (src, dest, doWatch) {
     return stream.pipe(gulp.dest(dest));
 };
 gulp.task("copy-static", function () {
-    return gulp.copy(["static/*"], "bin", false);
+    return gulp.copy(["static/**"], "bin", false);
 });
 gulp.task("copy-static-on-my-watch", function () {
-    gulp.copy(["static/*"], "bin", true);
+    gulp.copy(["static/**"], "bin", true);
 });
 gulp.task("copy-phaser", function () {
     return gulp.copy(["node_modules/phaser/dist/phaser.js"], "bin", false);
