@@ -1,0 +1,12 @@
+/.idea/
+
+# babel is generated on the fly
+/bin/
+
+# node way
+node_modules/
+
+# python install artifacts
+/__pycache__/
+
+
