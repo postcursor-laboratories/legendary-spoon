@@ -17,6 +17,7 @@ Next, run `npm install` to grab all dependencies you need to build.
 Now you are ready to build. `gulp --tasks` will tell you what you can do.
 
 Some common tasks:
+
 |Name|Description|
 |----|-----------|
 |`transform`|Do a one-time transform from the entry file(s) in `src` to `bin`.|
