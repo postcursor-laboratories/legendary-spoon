@@ -20,7 +20,8 @@ Some common tasks:
 
 |Name|Description|
 |----|-----------|
-|`transform`|Do a one-time transform from the entry file(s) in `src` to `bin`.|
+|`site`|Prepare the entire build in `bin`.|
+|`transform`|Do a one-time transform from the JS entry file(s) in `src` to `bin`.|
 |`transform-on-my-watch`|Do a transform as above, and then watch `src` and re-transform when there's changes.|
 
-For a simple build, you probably want `transform`.
+For a simple build, you probably want `site`.

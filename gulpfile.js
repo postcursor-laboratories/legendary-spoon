@@ -94,3 +94,11 @@ gulp.task("transform", function () {
 gulp.task("transform-on-my-watch", function () {
     return commonTransform({}, true);
 });
+// setup gulp.copy
+gulp.copy = function (src, dest) {
+    return gulp.src(src).pipe(gulp.dest(dest));
+};
+gulp.task("copy-static", function () {
+    return gulp.copy(['static/*'], 'bin');
+});
+gulp.task("site", ["transform", "copy-static"]);
