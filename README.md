@@ -18,10 +18,12 @@ Now you are ready to build. `gulp --tasks` will tell you what you can do.
 
 Some common tasks:
 
-|Name|Description|
+|Name (`make` name)|Description|
 |----|-----------|
-|`site`|Prepare the entire build in `bin`.|
-|`transform`|Do a one-time transform from the JS entry file(s) in `src` to `bin`.|
-|`transform-on-my-watch`|Do a transform as above, and then watch `src` and re-transform when there's changes.|
+|`site` (`bin`/`build`)|Prepare the entire build in `bin`.|
+|`dev-server` (`server`/`build-forever`)|Setup `site` in watch mode (changes are detected) and serve `bin` on `localhost:1337`|
+|`transform` (N/A)|Do a one-time transform from the JS entry file(s) in `src` to `bin`.|
+|`transform-on-my-watch` (N/A)|Do a transform as above, and then watch `src` and re-transform when there's changes.|
+|N/A (`clean`)|Runs `rm -rf bin`.|
 
 For a simple build, you probably want `site`.
