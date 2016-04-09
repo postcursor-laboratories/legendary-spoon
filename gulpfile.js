@@ -2,7 +2,10 @@
 
 var browserify = require("browserify");
 var gulp = require("gulp");
+var connect = require("gulp-connect");
+var plumber = require("gulp-plumber");
 var sourcemaps = require("gulp-sourcemaps");
+var watch = require("gulp-watch");
 var fs = require("fs");
 var mkdirp = require("mkdirp");
 var merge = require("merge");
@@ -28,7 +31,7 @@ function magicTouchFile(f) {
 }
 
 // Ensure bin exists
-mkdirp.sync('./bin/');
+mkdirp.sync("./bin/");
 var pages = ["main"].map(function (page) {
         return page + ".js";
     }),
@@ -61,15 +64,12 @@ function commonTransform(customOpts, watch) {
     console.log("Applying babelify");
     b = b.transform("babelify");
     console.log("Applying browserify-shim");
-    // SHIM CONFIG AVAILABLE IN package.json. ONLY $0.33!
     b = b.transform("browserify-shim");
-    console.log("Applying factor-bundle");
-    b = b.plugin("factor-bundle", {outputs: outputs});
     var doBundle = function doBundle() {
         timelog("Bundling again!");
         return b.bundle()
             //.pipe(showProgress(process.stdout))
-            .pipe(fs.createWriteStream(magicTouchFile("bin/common.js")))
+            .pipe(fs.createWriteStream(magicTouchFile("bin/game.js")))
             .on("finish", function () {
                 timelog("done bundling");
             });
@@ -95,10 +95,27 @@ gulp.task("transform-on-my-watch", function () {
     return commonTransform({}, true);
 });
 // setup gulp.copy
-gulp.copy = function (src, dest) {
-    return gulp.src(src).pipe(gulp.dest(dest));
+gulp.copy = function (src, dest, doWatch) {
+    var stream = gulp.src(src);
+    if (doWatch) {
+        stream = stream.pipe(watch(src)).pipe(plumber());
+    }
+    return stream.pipe(gulp.dest(dest));
 };
 gulp.task("copy-static", function () {
-    return gulp.copy(['static/*'], 'bin');
+    return gulp.copy(["static/*"], "bin", false);
 });
-gulp.task("site", ["transform", "copy-static"]);
+gulp.task("copy-static-on-my-watch", function () {
+    gulp.copy(["static/*"], "bin", true);
+});
+gulp.task("copy-phaser", function () {
+    return gulp.copy(["node_modules/phaser/dist/phaser.js"], "bin", false);
+});
+gulp.task("site", ["transform", "copy-static", "copy-phaser"]);
+gulp.task("dev-server", ["transform-on-my-watch", "copy-static-on-my-watch", "copy-phaser"], function () {
+    connect.server({
+        root: "bin",
+        port: 1337,
+        livereload: true
+    });
+});

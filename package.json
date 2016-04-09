@@ -3,12 +3,16 @@
   "version": "0.0.1",
   "description": "A JS Clone of Zelda",
   "browser": {
+    "phaser": "./node_modules/phaser/dist/phaser.js"
   },
   "browserify-shim": {
+    "phaser": "global:Phaser",
+    "pixi": "global:PIXI"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.1",
+    "phaser": "^2.4.6",
     "promise": "^7.1.1"
   },
   "devDependencies": {
@@ -20,9 +24,11 @@
     "browserify-shim": "^3.8.12",
     "dateformat": "^1.0.12",
     "eslint-plugin-react": "^4.1.0",
-    "factor-bundle": "^2.5.0",
     "gulp": "^3.9.1",
+    "gulp-connect": "^3.2.2",
+    "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-watch": "^4.3.5",
     "merge": "^1.2.0",
     "minifyify": "^7.3.2",
     "mkdirp": "^0.5.1",
