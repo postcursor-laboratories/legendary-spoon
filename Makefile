@@ -1,5 +1,5 @@
 bin:
-	gulp transform
+	gulp site
 bin-forever:
 	gulp transform-on-my-watch
 build: bin
