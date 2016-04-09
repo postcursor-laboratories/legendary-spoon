@@ -1,8 +1,10 @@
 bin:
 	gulp site
-bin-forever:
-	gulp transform-on-my-watch
+
+.PHONY: server build build-forever clean
+server:
+	gulp dev-server
 build: bin
-build-forever: bin-forever
+build-forever: server
 clean:
 	rm -rf bin
