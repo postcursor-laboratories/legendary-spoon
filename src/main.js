@@ -4,14 +4,21 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, "", {preload: preload, create:
 function preload() {
     game.load.image("spoon", "img/spoon.png");
 }
-let sprite;
+let sprites = [];
 function create() {
-    sprite = game.add.sprite(200, 200, "spoon");
-    sprite.scale.setTo(0.2, 0.2);
-    sprite.anchor.setTo(0.5, 0.5);
-    sprite.tint = 0xe5f53b; //sorta gold
+    for (let i = 0; i < 25; i++) {
+        let sprite = game.add.sprite(Math.random() * 800, Math.random() * 600, "spoon");
+        sprite.scale.setTo(0.2, 0.2);
+        sprite.anchor.setTo(0.5, 0.5);
+        sprite.tint = 0xe5f53b; //sorta gold
+        sprite.rotationAmount = Math.random() > 0.5 ? -1 : 1;
+        sprite.angle = Math.random() * 360;
+        sprites.push(sprite);
+    }
 }
 
 function update() {
-    sprite.angle += 1;
+    for (let sprite of sprites) {
+        sprite.angle += sprite.rotationAmount;
+    }
 }
