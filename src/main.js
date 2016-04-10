@@ -8,7 +8,6 @@ let sprites = [];
 function create() {
     for (let i = 0; i < 25; i++) {
         let sprite = game.add.sprite(Math.random() * 800, Math.random() * 600, "spoon");
-        sprite.scale.setTo(0.2, 0.2);
         sprite.anchor.setTo(0.5, 0.5);
         sprite.tint = 0xe5f53b; //sorta gold
         sprite.rotationAmount = Math.random() > 0.5 ? -1 : 1;
