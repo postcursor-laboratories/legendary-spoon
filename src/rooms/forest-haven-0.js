@@ -18,6 +18,7 @@ room.setSprites([
     new StaticForeground("grass-tall", 10, 12),
     new StaticForeground("grass-tall", 11, 12),
     new StaticForeground("grass-tall", 12, 12),
+    new StaticForeground("tree", 18, 12),
 ]);
 
 module.exports = room;
