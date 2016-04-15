@@ -65,6 +65,10 @@ function commonTransform(customOpts, watch) {
     b = b.transform("babelify");
     console.log("Applying browserify-shim");
     b = b.transform("browserify-shim");
+    
+    console.log("Applying require-globify");
+    b = b.transform("require-globify");
+    
     var doBundle = function doBundle() {
         timelog("Bundling again!");
         return b.bundle()
@@ -119,3 +123,4 @@ gulp.task("dev-server", ["transform-on-my-watch", "copy-static-on-my-watch", "co
         livereload: true
     });
 });
+;

@@ -11,4 +11,4 @@ export class Spoon extends Sprite {
         this.sprite.angle += this.rotationAmount;
     }
 
-}
+};

@@ -22,4 +22,4 @@ export function loadAllSprites(game) {
         sprites.push(spoon);
     }
     return sprites;
-}
+};

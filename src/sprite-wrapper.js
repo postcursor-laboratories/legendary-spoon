@@ -51,4 +51,4 @@ export class Sprite {
     update() {
     }
 
-}
+};
