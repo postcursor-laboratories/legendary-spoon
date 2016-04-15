@@ -14,9 +14,8 @@ export class Room {
     }
 
     render(game) {
-	this._render(game);
 	for (let sprite of this._sprites) {
-	    game.add(sprite);
+	    sprite.initialize(game);
 	}
     }
 
@@ -33,15 +32,6 @@ export class Room {
      */
     setSprites(sprites) {
 	this._sprites = sprites;
-    }
-    
-    /**
-     * For adding arbitrary rendering before rendering the sprites. Will probably be used
-     * for backgrounds.
-     * @param render - function(game) {...} that adds this room to the game
-     */
-    setRenderer(render) {
-	this._render = render;
     }
 
     update() {
